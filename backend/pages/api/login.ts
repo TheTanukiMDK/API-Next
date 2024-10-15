@@ -15,14 +15,14 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<LoginResponse>
 ){
-    const {method} = req 
+    const {method} = req;
     
     if(method == 'POST'){
         const {username, password} = req.body
 
         //buscar el usuario en base de datos (arreglo)
         //const userBd = users.find((u) => u.username === username)
-        const user = await prisma.user.findUnique({
+        const user = await prisma.users.findUnique({
             where: {username}
         })
 
