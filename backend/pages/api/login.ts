@@ -14,9 +14,18 @@ interface LoginResponse{
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<LoginResponse>
-){
-    const {method} = req;
+
     
+){
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+
+    const {method} = req;
+
     if(method == 'POST'){
         const {username, password} = req.body
 
